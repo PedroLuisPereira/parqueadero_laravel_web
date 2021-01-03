@@ -10,6 +10,10 @@ use App\Servicio;
 
 class VehiculoController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -90,7 +94,7 @@ class VehiculoController extends Controller
         $cliente_id = $request->input('cliente_id');
 
         $vehiculo = new Vehiculo();
-        $vehiculo->placa = $placa;
+        $vehiculo->placa = strtoupper($placa);
         $vehiculo->tipo = $tipo;
         $vehiculo->cliente_id = $cliente_id;
         $vehiculo->save();
@@ -154,7 +158,7 @@ class VehiculoController extends Controller
         
         //guardar
         $vehiculo = Vehiculo::findOrFail($id);
-        $vehiculo->placa = $placa;
+        $vehiculo->placa = strtoupper($placa);
         $vehiculo->tipo = $tipo;
         $vehiculo->save();
         

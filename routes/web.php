@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClienteController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,12 +15,8 @@ use App\Http\Controllers\ClienteController;
 |
 */
 
-//login
-Route::get('/', function () {
-    return view('login');
-});
-
-
+//raiz
+Route::get('/','ParqueaderoController@index')->name('home');
 
 //clientes
 Route::get('/clientes', [ClienteController::class, 'index'])->name('cliente.index');
@@ -56,3 +53,28 @@ Route::put('/parqueaderos', 'ParqueaderoController@update')->name('parqueadero.u
 Route::get('/parqueaderos/{placa}', 'ParqueaderoController@consultar')->name('parqueadero.consultar');
 Route::get('/parqueadero/{id}', 'ParqueaderoController@mover')->name('parqueadero.mover');
 Route::delete('/parqueaderos/{id}', 'ParqueaderoController@destroy')->name('parqueadero.destroy');
+
+//usuarios
+Route::get('/usuarios', 'UserController@index')->name('user.index');
+Route::get('/usuarios/crear', 'UserController@create')->name('user.create');
+Route::post('/usuarios', 'UserController@store')->name('user.store');
+Route::get('/usuarios/{id}/edit', 'UserController@edit')->name('user.edit');
+Route::put('/usuarios/{id}', 'UserController@update')->name('user.update');
+Route::delete('/usuarios/{id}', 'UserController@destroy')->name('user.destroy');
+
+//cuenta
+Route::get('/cuenta', 'CuentaController@index')->name('cuenta.index');
+Route::put('/cuenta', 'CuentaController@update')->name('cuenta.update');
+
+
+Route::get('/cuenta/crear', 'UserController@create')->name('user.create');
+Route::get('/cuenta/{id}/edit', 'UserController@edit')->name('user.edit');
+Route::post('/cuenta', 'CuentaController@store')->name('cuenta.store');
+Route::delete('/cuenta/{id}', 'UserController@destroy')->name('user.destroy');
+
+
+//autenticacion
+Auth::routes();
+//Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'ParqueaderoController@index')->name('home'); 
+

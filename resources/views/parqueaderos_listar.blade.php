@@ -13,11 +13,7 @@
             <form action="{{ route('parqueadero.store') }}" method="POST" class="w3-container">
                 @csrf
 
-                @if (session('respuesta'))
-                    <div class="w3-panel w3-pale-green w3-border">
-                        <p>{{ session('respuesta') }}</p>
-                    </div>
-                @endif
+
 
                 <p>
                     <label class="w3-text-grey"><b>Placa - Serial del vehículo</b></label>
@@ -40,6 +36,12 @@
             </form>
         </div>
     </div>
+
+    @if (session('respuesta'))
+        <div class="w3-panel w3-pale-green w3-border">
+            <p>{{ session('respuesta') }}</p>
+        </div>
+    @endif
 
     <!-- parqueadero -->
     <br />
@@ -98,7 +100,9 @@
                         <p>N° Documento: <?php echo $dato['cliente']['numero_documento']; ?>
                         </p>
                         <hr />
-                        <input type="button" id="mover"  onclick="abrir_modal_mover('{{ $dato['id'] }}', '{{ $dato['parqueadero'] }}')" class="w3-button w3-blue" value="Mover" />
+                        <input type="button" id="mover"
+                            onclick="abrir_modal_mover('{{ $dato['id'] }}', '{{ $dato['parqueadero'] }}')"
+                            class="w3-button w3-blue" value="Mover" />
                         <hr />
                         <form action="{{ url('/parqueaderos/' . $dato['id']) }}" method="POST">
                             <input type="submit" value="Terminar servicio" class="w3-button w3-red" />
@@ -129,7 +133,9 @@
                         <p>N° Documento: <?php echo $dato['cliente']['numero_documento']; ?>
                         </p>
                         <hr />
-                        <input type="button" id="mover" onclick="abrir_modal_mover('{{ $dato['id'] }}', '{{ $dato['parqueadero'] }}')" class="w3-button w3-blue" value="Mover" />
+                        <input type="button" id="mover"
+                            onclick="abrir_modal_mover('{{ $dato['id'] }}', '{{ $dato['parqueadero'] }}')"
+                            class="w3-button w3-blue" value="Mover" />
                         <hr />
                         <form action="{{ url('/parqueaderos/' . $dato['id']) }}" method="POST">
                             @csrf

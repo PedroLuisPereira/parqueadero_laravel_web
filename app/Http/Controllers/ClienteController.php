@@ -9,6 +9,10 @@ use App\Vehiculo;
 
 class ClienteController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -83,7 +87,7 @@ class ClienteController extends Controller
 
         //crear vehiculo
         $vehiculo = new Vehiculo;
-        $vehiculo->placa = $placa;
+        $vehiculo->placa = strtoupper($placa);
         $vehiculo->tipo = $tipo;
         $vehiculo->cliente_id = $cliente->id;
         $vehiculo->save();

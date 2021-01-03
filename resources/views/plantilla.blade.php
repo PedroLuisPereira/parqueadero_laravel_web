@@ -36,8 +36,12 @@
         <a href="{{ url("/vehiculos") }}" class="w3-bar-item w3-button w3-mobile {{request()->routeIs('vehiculo.*')? 'activo' : '' }}">Vehículos</a>
         <a href="{{ url("servicios") }}" class="w3-bar-item w3-button w3-mobile {{request()->routeIs('servicio.*')? 'activo' : '' }}">Servicios</a>
         <a href="{{ url("/tarifas") }}" class="w3-bar-item w3-button w3-mobile {{request()->routeIs('tarifa.*')? 'activo' : '' }}">Tarifas</a>
-        <a href="{{ url("/usuarios") }}usuarios" class="w3-bar-item w3-button w3-mobile {{request()->routeIs('usuario.*')? 'activo' : '' }}">Usuarios</a>
-        <a href="{{ url("/cuenta") }}#" class="w3-bar-item w3-button w3-right w3-mobile {{request()->routeIs('cuenta.*')? 'activo' : '' }}">Cuenta</a>
+        
+        @if ( Auth::user()->rol == "Administrador")
+            <a href="{{ url("/usuarios") }}" class="w3-bar-item w3-button w3-mobile {{request()->routeIs('usuario.*')? 'activo' : '' }}">Usuarios</a>
+        @endif
+        
+        <a href="{{ url("/cuenta") }}" class="w3-bar-item w3-button w3-right w3-mobile {{request()->routeIs('cuenta.*')? 'activo' : '' }}">Cuenta</a>
     </div>
 
     <div class="contenido">
