@@ -27,6 +27,11 @@ class CreateParqueaderosTable extends Migration
         DB::insert("INSERT INTO `usuarios` (`id`, `nombre`, `correo`,`contra`,`rol`,`estado`)
         VALUES ('1', 'Pedro Luis', 'druped@hotmail.com','e10adc3949ba59abbe56e057f20f883e','Administrador','Activo');");
 
+        /* user administrador, contra = 123456 */
+        $contra = '$2y$10$xL0qtEQ7wHc.Vi6quWQ61ub6uueZhEBADaNBGywAQpoJeKZx6.RGm';
+        DB::insert("INSERT INTO `users` (`id`, `name`, `email`,`password`,`rol`,`estado`)
+        VALUES ('1', 'Pedro Luis', 'druped@hotmail.com','$contra','Administrador','Activo');");
+        
         /*tarifas*/
         DB::insert("INSERT INTO `tarifas` (`id`) VALUES ('1');");
 

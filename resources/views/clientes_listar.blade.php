@@ -4,7 +4,7 @@
 @section('contenido')
 
 
-     <!-- nuevo cliente -->
+    <!-- nuevo cliente -->
     <div class="w3-row">
         <div class="w3-col m4 l3">
             <div class="btn_nuevo">
@@ -16,7 +16,7 @@
         <form>
             <div class="w3-col m7 l8">
                 <div>
-                    <input class="w3-input w3-border" value="{{ $buscar }}" type="search" name="buscar"/>
+                    <input class="w3-input w3-border" value="{{ $buscar }}" type="search" name="buscar" />
                 </div>
             </div>
             <div class="w3-col m1 l1">
@@ -55,10 +55,12 @@
                             class="w3-button w3-highway-blue">Editar</a>
                     </td>
                     <td>
-                        <a href="{{ url('/vehiculos/crear/' . $cliente->id )}}" class="w3-button w3-highway-orange">Agregar</a>
+                        <a href="{{ url('/vehiculos/crear/' . $cliente->id) }}"
+                            class="w3-button w3-highway-orange">Agregar</a>
                     </td>
                     <td>
-                        <a href="{{ url('/vehiculos/listar/' . $cliente->id )}}" class="w3-button w3-highway-green" > Ver</a>
+                        <a href="{{ url('/vehiculos/listar/' . $cliente->id) }}" class="w3-button w3-highway-green">
+                            Ver</a>
                     </td>
                     <td>
                         <form action="{{ url('/clientes/' . $cliente->id) }}" method="POST">
@@ -74,13 +76,16 @@
         </table>
     </div>
 
-    <div class="w3-bar">
-        <a href="#" class="w3-button">&laquo;</a>
-        <a href="#" class="w3-button w3-blue">1</a>
-        <a href="#" class="w3-button">2</a>
-        <a href="#" class="w3-button">3</a>
-        <a href="#" class="w3-button">4</a>
-        <a href="#" class="w3-button">&raquo;</a>
+    <div class="w3-right">
+        <div class="w3-bar">
+            <a href="#" class="w3-button">&laquo;</a>
+            <a href="#" class="w3-button w3-blue">1</a>
+            <a href="#" class="w3-button">2</a>
+            <a href="#" class="w3-button">3</a>
+            <a href="#" class="w3-button">4</a>
+            <a href="#" class="w3-button">&raquo;</a>
+        </div>
     </div>
-
+ 
 @endsection
+

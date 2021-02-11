@@ -9,10 +9,11 @@ use App\Vehiculo;
 
 class ClienteController extends Controller
 {
-    public function __construct(){
+    public function __construct()
+    {
         $this->middleware('auth');
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -31,7 +32,7 @@ class ClienteController extends Controller
                 ->orWhere('apellidos', 'like', "%$buscar%")
                 ->get();
         } else {
-            $clientes = Cliente::all();
+            $clientes = Cliente::get();
         }
 
         $data = array(
@@ -92,7 +93,9 @@ class ClienteController extends Controller
         $vehiculo->cliente_id = $cliente->id;
         $vehiculo->save();
 
-        return back()->with('respuesta', 'Usuario creado'); //mensaje flask
+        return redirect('/clientes/crear')->with('respuesta', 'Usuario creado');
+
+        //return redirect()->back()->with('respuesta', 'Usuario creado'); //mensaje flask
     }
 
     /**

@@ -5,16 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use App\User;
 
 
 class UserController extends Controller
 {
-    public function __construct(){
+    public function __construct()
+    {
         $this->middleware('auth');
         $this->middleware('rol');
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -90,6 +92,8 @@ class UserController extends Controller
         return back()->with('respuesta', 'Usuario creado'); //mensaje flask
     }
 
+    
+
     /**
      * Display the specified resource.
      *
@@ -146,7 +150,7 @@ class UserController extends Controller
         $User->name = $name;
         $User->email = $email;
         $User->rol = $rol;
-        $User->estado= $estado;
+        $User->estado = $estado;
         $User->save();
 
         return back()->with('respuesta', 'Usuario actualizado'); //mensaje flask

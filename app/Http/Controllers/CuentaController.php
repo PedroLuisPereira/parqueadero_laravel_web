@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use App\User;
 
 
@@ -76,6 +77,32 @@ class CuentaController extends Controller
         $User->save();
 
         return back()->with('respuesta', 'Usuario creado'); //mensaje flask
+    }
+
+    public function store_img(Request $request)
+    {
+        
+        //validaciones
+        $validacion = $request->validate([
+            'avatar' => 'required|image|max:2000',
+        ]);
+
+        //buscar usuario
+        $id = Auth::user()->id;
+        $user = User::findOrFail($id);
+
+        //eliminar foto del servidor 
+        Storage::delete($user->foto);
+
+        //guardar nueva foto
+        $foto = $request->file('avatar')->store('avatars', 'public');
+
+        //guardar en bd
+        $user->foto = $foto;
+        $user->save();
+
+        //respuesta
+        return back()->with('avatar', 'Avatar actualizado'); //mensaje flask
     }
 
     /**

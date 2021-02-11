@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClienteController;
 use Illuminate\Support\Facades\Auth;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,9 +15,12 @@ use Illuminate\Support\Facades\Auth;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// Route::get('/', function () {
+//     echo route('cliente.create');
+// });
 
 //raiz
-Route::get('/','ParqueaderoController@index')->name('home');
+Route::get('/','ParqueaderoController@index')->name('parqueadero.index');
 
 //clientes
 Route::get('/clientes', [ClienteController::class, 'index'])->name('cliente.index');
@@ -29,7 +33,7 @@ Route::put('/clientes/{id}', [ClienteController::class, 'update'])->name('client
 Route::delete('/clientes/{id}', [ClienteController::class, 'destroy'])->name('cliente.destroy');
 
 //vehiculos
-//Route::resource('/vehiculos', 'VehiculoController');
+//Route::resource('/vehiculos', 'VehiculoController'); 
 Route::get('/vehiculos', 'VehiculoController@index')->name('vehiculo.index');
 Route::get('/vehiculos/crear/{id}', 'VehiculoController@create')->name('vehiculo.create');
 Route::get('/vehiculos/listar/{id}', 'VehiculoController@listar_cliente_id')->name('vehiculo.listar');
@@ -61,16 +65,18 @@ Route::post('/usuarios', 'UserController@store')->name('user.store');
 Route::get('/usuarios/{id}/edit', 'UserController@edit')->name('user.edit');
 Route::put('/usuarios/{id}', 'UserController@update')->name('user.update');
 Route::delete('/usuarios/{id}', 'UserController@destroy')->name('user.destroy');
+Route::post('/usuarios/img', 'UserController@store_img')->name('user.store_img');
 
 //cuenta
 Route::get('/cuenta', 'CuentaController@index')->name('cuenta.index');
 Route::put('/cuenta', 'CuentaController@update')->name('cuenta.update');
 
-
+//cuenta usuario
 Route::get('/cuenta/crear', 'UserController@create')->name('user.create');
 Route::get('/cuenta/{id}/edit', 'UserController@edit')->name('user.edit');
 Route::post('/cuenta', 'CuentaController@store')->name('cuenta.store');
 Route::delete('/cuenta/{id}', 'UserController@destroy')->name('user.destroy');
+Route::post('/cuenta/img', 'CuentaController@store_img')->name('cuenta.store_img');
 
 
 //autenticacion

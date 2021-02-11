@@ -84,7 +84,7 @@ class VehiculoController extends Controller
         $validacion = $request->validate([
             'placa' => 'required|max:50|unique:vehiculos,placa',
             'tipo' => 'required|max:50',
-            'cliente_id' => 'required|max:50',
+            'cliente_id' => 'required|max:50|vehiculos:id',
         ]);
 
 
@@ -129,8 +129,10 @@ class VehiculoController extends Controller
     public function edit($id)
     {
         $vehiculo = Vehiculo::findOrFail($id);
+        $clientes = Cliente::get();
         $data = array(
-            'vehiculo' => $vehiculo
+            'vehiculo' => $vehiculo,
+            'clientes'=> $clientes
         );
 
         return view('vehiculos_editar', $data);
@@ -150,16 +152,19 @@ class VehiculoController extends Controller
         $validacion = $request->validate([
             'placa' => "required|max:50|unique:vehiculos,placa,$id",
             'tipo' => 'required|max:50',
+            'cliente_id' => 'required|max:50',
         ]);
         
         //capturar datos 
         $placa = $request->input('placa');
         $tipo = $request->input('tipo');
+        $cliente_id = $request->input('cliente_id');
         
         //guardar
         $vehiculo = Vehiculo::findOrFail($id);
         $vehiculo->placa = strtoupper($placa);
         $vehiculo->tipo = $tipo;
+        $vehiculo->cliente_id = $cliente_id;
         $vehiculo->save();
         
         //llamar a la vista
