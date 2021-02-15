@@ -14,10 +14,10 @@ class CreateVehiculosTable extends Migration
     public function up()
     {
         Schema::create('vehiculos', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('placa', 50)->unique();;
             $table->string('tipo', 50);
-            $table->unsignedInteger('cliente_id');
+            $table->unsignedBigInteger('cliente_id');
             $table->foreign('cliente_id')->references('id')->on('clientes');
             $table->timestamps();
         });

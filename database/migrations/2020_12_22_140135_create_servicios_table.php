@@ -14,15 +14,15 @@ class CreateServiciosTable extends Migration
     public function up()
     {
         Schema::create('servicios', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->dateTime('hora_entrada', $precision = 0);
-            $table->dateTime('hora_salida', $precision = 0);
-            $table->integer('minutos');
-            $table->double('valor_minuto', 12, 2);
-            $table->double('total', 12, 2);
+            $table->dateTime('hora_salida', $precision = 0)->default(null);
+            $table->integer('minutos')->default(0);
+            $table->double('valor_minuto', 12, 2)->default(0);
+            $table->double('total', 12, 2)->default(0);
             $table->string('estado', 50);
             $table->string('parqueadero', 50);
-            $table->unsignedInteger('vehiculo_id');
+            $table->unsignedBigInteger('vehiculo_id');
             $table->foreign('vehiculo_id')->references('id')->on('vehiculos');
             $table->timestamps();
         });

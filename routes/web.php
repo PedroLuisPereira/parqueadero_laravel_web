@@ -19,8 +19,13 @@ use Illuminate\Support\Facades\Auth;
 //     echo route('cliente.create');
 // });
 
-//raiz
+////parqueaderos
 Route::get('/','ParqueaderoController@index')->name('parqueadero.index');
+Route::post('/parqueaderos', 'ParqueaderoController@store')->name('parqueadero.store');
+Route::put('/parqueaderos', 'ParqueaderoController@update')->name('parqueadero.update');
+Route::get('/parqueaderos/{placa}', 'ParqueaderoController@consultar')->name('parqueadero.consultar');
+Route::get('/parqueadero/{id}', 'ParqueaderoController@mover')->name('parqueadero.mover');
+Route::delete('/parqueaderos/{id}', 'ParqueaderoController@destroy')->name('parqueadero.destroy');
 
 //clientes
 Route::get('/clientes', [ClienteController::class, 'index'])->name('cliente.index');
@@ -50,14 +55,6 @@ Route::get('/servicios', 'ServicioController@index')->name('servicio.index');
 Route::get('/tarifas', 'TarifasController@index')->name('tarifa.index');
 Route::post('/tarifas', 'TarifasController@store')->name('tarifa.store');
 
-//parqueaderos
-Route::get('/parqueaderos', 'ParqueaderoController@index')->name('parqueadero.index');
-Route::post('/parqueaderos', 'ParqueaderoController@store')->name('parqueadero.store');
-Route::put('/parqueaderos', 'ParqueaderoController@update')->name('parqueadero.update');
-Route::get('/parqueaderos/{placa}', 'ParqueaderoController@consultar')->name('parqueadero.consultar');
-Route::get('/parqueadero/{id}', 'ParqueaderoController@mover')->name('parqueadero.mover');
-Route::delete('/parqueaderos/{id}', 'ParqueaderoController@destroy')->name('parqueadero.destroy');
-
 //usuarios
 Route::get('/usuarios', 'UserController@index')->name('user.index');
 Route::get('/usuarios/crear', 'UserController@create')->name('user.create');
@@ -70,8 +67,6 @@ Route::post('/usuarios/img', 'UserController@store_img')->name('user.store_img')
 //cuenta
 Route::get('/cuenta', 'CuentaController@index')->name('cuenta.index');
 Route::put('/cuenta', 'CuentaController@update')->name('cuenta.update');
-
-//cuenta usuario
 Route::get('/cuenta/crear', 'UserController@create')->name('user.create');
 Route::get('/cuenta/{id}/edit', 'UserController@edit')->name('user.edit');
 Route::post('/cuenta', 'CuentaController@store')->name('cuenta.store');
@@ -80,7 +75,8 @@ Route::post('/cuenta/img', 'CuentaController@store_img')->name('cuenta.store_img
 
 
 //autenticacion
-Auth::routes();
-//Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/home', 'ParqueaderoController@index')->name('home'); 
+//Auth::routes(['register' => false]); //eliminar una ruta
+Route::get('/login', 'AuthController@formulario')->name('auth.formulario');
+Route::post('/login', 'AuthController@login')->name('auth.login');
+Route::post('/logout', 'AuthController@logout')->name('auth.logout');
 

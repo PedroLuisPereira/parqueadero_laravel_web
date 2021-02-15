@@ -80,11 +80,12 @@ class VehiculoController extends Controller
     public function store(Request $request)
     {
 
+        
         //validaciones
         $validacion = $request->validate([
             'placa' => 'required|max:50|unique:vehiculos,placa',
             'tipo' => 'required|max:50',
-            'cliente_id' => 'required|max:50|vehiculos:id',
+            'cliente_id' => 'required|max:50|exists:clientes,id',
         ]);
 
 

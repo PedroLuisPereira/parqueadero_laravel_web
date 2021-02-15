@@ -31,14 +31,14 @@
 
     <!-- Navigation Bar -->
     <div class="w3-bar w3-light-grey w3-large menu">
-        <a href="{{ url("/parqueaderos") }}" class="w3-bar-item w3-button w3-dark-grey w3-mobile">Parqueadero</a>
+        <a href="{{ url("/") }}" class="w3-bar-item w3-button w3-dark-grey w3-mobile {{request()->routeIs('parqueadero.*')? 'activo' : '' }} ">Parqueadero</a>
         <a href="{{ url("/clientes") }}" class="w3-bar-item w3-button w3-mobile {{request()->routeIs('cliente.*')? 'activo' : '' }} ">Clientes</a>
         <a href="{{ url("/vehiculos") }}" class="w3-bar-item w3-button w3-mobile {{request()->routeIs('vehiculo.*')? 'activo' : '' }}">Vehículos</a>
         <a href="{{ url("servicios") }}" class="w3-bar-item w3-button w3-mobile {{request()->routeIs('servicio.*')? 'activo' : '' }}">Servicios</a>
         <a href="{{ url("/tarifas") }}" class="w3-bar-item w3-button w3-mobile {{request()->routeIs('tarifa.*')? 'activo' : '' }}">Tarifas</a>
         
         @if ( Auth::user()->rol == "Administrador")
-            <a href="{{ url("/usuarios") }}" class="w3-bar-item w3-button w3-mobile {{request()->routeIs('usuario.*')? 'activo' : '' }}">Usuarios</a>
+            <a href="{{ url("/usuarios") }}" class="w3-bar-item w3-button w3-mobile {{request()->routeIs('user.*')? 'activo' : '' }}">Usuarios</a>
         @endif
         
         <a href="{{ url("/cuenta") }}" class="w3-bar-item w3-button w3-right w3-mobile {{request()->routeIs('cuenta.*')? 'activo' : '' }}">Cuenta</a>
